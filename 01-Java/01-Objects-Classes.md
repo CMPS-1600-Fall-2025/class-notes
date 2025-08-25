@@ -64,7 +64,12 @@ Java is designed to leverage the power of abstraction. When another part of the
 program is interacting with a `Hero` (or any other object), it should now care 
 *how* the class is implemented, not even what its variables are, only the 
 **ways** the object can be interacted with, i.e. the methods that can be called
-on it.
+on it. For this reason, we hide the actual implementation, the underlying way
+we store the data, and expose only methods to interact with that data.
+
+This also lets us control precisely which access we grant. For example, we may
+want to grant the ability to see our Hero's name, but not allow other classes
+to edit the name.
 
 #### Constructor
 
@@ -82,3 +87,52 @@ an instance variable using the `this` keyword.
 
 The instruction `this.name = name` assigns the value from the local parameter
 `name` into the class instance variable `name`.
+
+### Adding methods to our class
+
+With our basic class implemented, we can implement methods to add functionality
+to it.
+
+The most simple example would be queries or "getters" to retreive information
+from a class. E.g:
+
+```java
+public String getName(){
+    return this.name;
+}
+```
+
+`Public` means this method is accessable outside of our class. `String` is the
+return type, i.e., this method returns a String. It takes no parameters and
+simply returns the value of this class's `name` instance variable.
+
+A more complex example is adding `attack()` and `takeDamage()` to allow our `Hero` to
+attack a `Villain` and take damage from villain attacks.
+
+``` java
+public void attack(Villain villain) {
+    System.out.printf("%s attacks %s for %d damage.\n", 
+                        this.name, 
+                        villain.getName(), 
+                        this.damage);
+    villain.takeDamage(this.damage);
+}
+
+public void takeDamage(int damage) {
+    this.hp -= damage;
+    // hp can not be negative
+    if(this.hp < 0) {
+        this.hp = 0;
+    }
+    System.out.printf("   %s has %d HP left\n\n", this.name, this.hp);
+}
+```
+
+After implementing these methods and the `isAlive()` method (see Hero.java),
+we've substantially abstracted away this complexity into our `Hero` class.
+
+Doing the same for `Villain`, we can then simplify our game loop. This
+simplification is immediate, but will also pay dividends as we implement more of
+our game.
+
+By having simply objects to deal with, we can write simple logic to use them

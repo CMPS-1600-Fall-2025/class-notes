@@ -17,5 +17,42 @@ public class Hero {
         this.hp = hp;
         this.damage = damage;
     }
+
+    public void takeTurn(Villain villain) {
+        // TO-DO implement getHP()
+        //System.out.println("%s has %d hp left.", villain.getName(), villian.getHP());
+        System.out.println("Do you want to:");
+        System.out.println("  1. attack");
+        System.out.println("  2. defend");
+        // read in user choice
+    }
+
+    public void attack(Villain villain) {
+        System.out.printf("%s attacks %s for %d damage.\n", 
+                            this.name, 
+                            villain.getName(), 
+                            this.damage);
+        villain.takeDamage(this.damage);
+    }
+
+    public void takeDamage(int damage) {
+        this.hp -= damage;
+        // hp can not be negative
+        if(this.hp < 0) {
+            this.hp = 0;
+        }
+        System.out.printf("   %s has %d HP left\n\n", this.name, this.hp);
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public Boolean isAlive() {
+        if(this.hp > 0) {
+            return true;
+        }
+        return false;
+    }
     
 }
