@@ -10,7 +10,7 @@ public class AdventureGame {
         while(true) {
             // hero attack the villian
             
-            hero.attack(villain);
+            hero.takeTurn(villain);
             if(!villain.isAlive()) {
                 System.out.printf("You won! Congrats!!!!!\n");
                 break;
