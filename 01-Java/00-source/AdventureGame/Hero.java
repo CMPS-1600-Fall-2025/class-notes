@@ -2,10 +2,7 @@ import java.util.Scanner;
 /**
  * Class Hero represents the user protagonist character in our game.
  */
-public class Hero {
-    private String name;
-    private int hp;
-    private int damage;
+public class Hero extends Character {
     private Scanner in;
 
     /**
@@ -15,9 +12,10 @@ public class Hero {
      * @param damage the base amount of damage this hero deals in an attack
      */
     public Hero(String name, int hp, int damage) {
-        this.name = name;
-        this.hp = hp;
-        this.damage = damage;
+        // if we don't call on superclass constructor java will call on
+        // default constructor:
+        // super();
+        super(name, hp, damage);
         in = new Scanner(System.in);
     }
 
@@ -43,34 +41,6 @@ public class Hero {
         
         System.out.printf("user choice: %d\n",choice);
         //in.close();
-    }
-
-    public void attack(Villain villain) {
-        System.out.printf("%s attacks %s for %d damage.\n", 
-                            this.name, 
-                            villain.getName(), 
-                            this.damage);
-        villain.takeDamage(this.damage);
-    }
-
-    public void takeDamage(int damage) {
-        this.hp -= damage;
-        // hp can not be negative
-        if(this.hp < 0) {
-            this.hp = 0;
-        }
-        System.out.printf("   %s has %d HP left\n\n", this.name, this.hp);
-    }
-
-    public String getName(){
-        return this.name;
-    }
-
-    public Boolean isAlive() {
-        if(this.hp > 0) {
-            return true;
-        }
-        return false;
     }
     
 }

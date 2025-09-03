@@ -1,10 +1,9 @@
+import java.util.Random;
+
 /**
  * Class Villain represents the user protagonist character in our game.
  */
-public class Villain {
-    private String name;
-    private int hp;
-    private int damage;
+public class Villain extends Character{
 
     /**
      * 
@@ -13,36 +12,25 @@ public class Villain {
      * @param damage the base amount of damage this villain deals in an attack
      */
     public Villain(String name, int hp, int damage) {
-        this.name = name;
-        this.hp = hp;
-        this.damage = damage;
+        super(name, hp, damage);
+
+        this.random = new Random();
     }
     
-    public void attack(Hero hero) {
-        System.out.printf("%s attacks %s for %d damage.\n", 
-                            this.name, 
-                            hero.getName(), 
-                            this.damage);
-         hero.takeDamage(this.damage);
-    }
+    // This attack overrides the attack we inherit from Character.
+    // That is, when a villain attacks, this method will be used instead of the
+    // version written in Character.
+    //@Override
+    public void takeTurn(Character other) {
+        // choice 1 = attack
+        // choice 2 = defend
+        int choice = random.nextInt(2);
 
-    public void takeDamage(int damage) {
-        this.hp -= damage;
-        // hp can not be negative
-        if(this.hp < 0) {
-            this.hp = 0;
+        if (choice == 1) {
+            attack(other);
         }
-        System.out.printf("   %s has %d HP left\n\n", this.name, this.hp);
-    }
-
-    public String getName(){
-        return this.name;
-    }
-
-    public Boolean isAlive() {
-        if(this.hp > 0) {
-            return true;
+        else {
+            System.out.printf("%s defends himself.\n", this.getName());
         }
-        return false;
     }
 }
