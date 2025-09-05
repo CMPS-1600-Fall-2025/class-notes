@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Character {
+abstract public class Character {
     protected String name;
     protected int hp;
     protected int damage;
@@ -49,4 +49,6 @@ public class Character {
                             this.getDamage());
         other.takeDamage(this.getDamage());
     }
+
+    abstract public void takeTurn(Character other);
 }

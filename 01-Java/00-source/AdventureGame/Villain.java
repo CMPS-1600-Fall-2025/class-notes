@@ -20,7 +20,7 @@ public class Villain extends Character{
     // This attack overrides the attack we inherit from Character.
     // That is, when a villain attacks, this method will be used instead of the
     // version written in Character.
-    //@Override
+    @Override
     public void takeTurn(Character other) {
         // choice 1 = attack
         // choice 2 = defend

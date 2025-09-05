@@ -62,3 +62,25 @@ has been **overloaded**.
 There are cases where it is useful to have methods with the same name but
 different parameters. As an example, see the absolute value function
 `abs()` in [Java's Math library](https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html).
+
+## Abstact Classes
+
+An **abstract class** is a class with one or more abstract methods.
+
+An **abstract method** is a method declaration with no implementation
+
+Why use abstract methods?
+
+They are useful when there is no possible (or good) implementation for this
+method is a superclass. The implementation depends on the specific subclass.
+
+Suppose we have `Shape` superclass with subclasses `Circle` and `Square`.
+
+We know that we should be able to calculate the `area()` of all shapes.
+
+`area()` should be declared in the shape superclass.
+
+We can not implement `area()` in `Shape` since the equation depends on the 
+specific shape. In `Shape`, we define `area()` as an abstract method (and 
+`Shape` is an abstract class) and require all subclasses to implement their
+specific `area()` methods.
