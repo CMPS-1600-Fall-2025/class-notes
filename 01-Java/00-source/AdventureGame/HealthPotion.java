@@ -8,7 +8,7 @@ public class HealthPotion extends Potion {
 
     @Override
     public void takePotion(Character c) {
-        c.hp += points;
+        c.modifyHealth(points); // add points to characters health
     }
     
 }

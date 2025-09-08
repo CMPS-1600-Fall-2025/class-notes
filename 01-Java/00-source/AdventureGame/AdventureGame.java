@@ -1,4 +1,8 @@
+import java.util.Random;
+
 public class AdventureGame {
+    public static Random random = new Random();
+
     public static void main(String[] args){
         Character hero = new Hero("KeyChain", 100, 20);
         Character villain = new Villain("Door Knob", 200, 15);

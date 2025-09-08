@@ -21,6 +21,7 @@ public class Hero extends Character {
 
     @Override
     public void takeTurn(Character villain) {
+        handleCharacterStates();
         // TO-DO implement getHP()
         //System.out.println("%s has %d hp left.", villain.getName(), villian.getHP());
         System.out.println("Do you want to:");
@@ -62,7 +63,8 @@ public class Hero extends Character {
             HealthPotion p = new HealthPotion(15);
             p.takePotion(this);
         } else if (choice == 2){
-            // poison
+            Potion p = new PoisonPotion(5);
+            p.takePotion(other);
         } else if (choice == 3){
             // strength
         }

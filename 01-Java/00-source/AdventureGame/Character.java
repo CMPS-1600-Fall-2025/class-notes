@@ -1,21 +1,30 @@
-import java.util.Random;
-
 abstract public class Character {
-    protected String name;
-    protected int hp;
-    protected int damage;
-    protected Random random;
+    private String name;
+    private int hp;
+    private int damage;
+    // poison state variables
+    private int poisonDamage;
+    private int poisonTurnCount;
+
 
     public Character(String name, int hp, int damage) {
         this.name = name;
         this.hp = hp;
         this.damage = damage;
+        this.poisonDamage = 0;
+        this.poisonTurnCount = 0;
+    }
 
-        this.random = new Random();
+    /**
+     * 
+     * @param amount could be positive or negative
+     */
+    public void modifyHealth(int amount) {
+        this.hp += amount;
     }
 
     public void takeDamage(int damage) {
-        this.hp -= damage;
+        modifyHealth(-damage);
         // hp can not be negative
         if(this.hp < 0) {
             this.hp = 0;
@@ -51,4 +60,16 @@ abstract public class Character {
     }
 
     abstract public void takeTurn(Character other);
+
+    public void handleCharacterStates(){
+        if(this.poisonTurnCount > 0) {
+            this.poisonTurnCount--;
+            this.modifyHealth(-poisonDamage);
+        }
+    }
+
+    public void becomePoisoned(int damage) {
+        this.poisonTurnCount += 3;
+        this.poisonDamage += damage;
+    }
 }

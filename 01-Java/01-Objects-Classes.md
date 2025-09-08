@@ -61,11 +61,18 @@ at the top of the class. Best practice is to define all instance variables as
 to do so.
 
 Java is designed to leverage the power of abstraction. When another part of the
-program is interacting with a `Hero` (or any other object), it should now care 
+program is interacting with a `Hero` (or any other object), it should not care 
 *how* the class is implemented, not even what its variables are, only the 
 **ways** the object can be interacted with, i.e. the methods that can be called
 on it. For this reason, we hide the actual implementation, the underlying way
 we store the data, and expose only methods to interact with that data.
+
+As a (great) consequence, if we decide to change the implementation, e.g. 
+changing the way we track and update health, we only
+need to update the class itself rather than every other class that directly 
+accessed say the `hp` variable which may now be obsolete. By hiding our
+implementation and only exposing methods to interact with a class, we make it
+much easier to change our implementation in the future.
 
 This also lets us control precisely which access we grant. For example, we may
 want to grant the ability to see our Hero's name, but not allow other classes
