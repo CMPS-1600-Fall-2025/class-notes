@@ -21,11 +21,17 @@ public class Hero extends Character {
 
     @Override
     public void takeTurn(Character villain) {
+        System.out.println();
+        System.out.printf("It is %s's turn!\n", this.getName());
         handleCharacterStates();
         // in case poison defeats them at top of their turn
         if(this.getHP() <= 0) {
             return;
         }
+        System.out.printf("*************************************************\n");
+        System.out.printf("You have %d hp, and you deal %d attack damage\n", this.getHP(), this.getDamage());
+        System.out.printf("%s has %d hp, and deals %d attack damage.\n", villain.getName(), villain.getHP(), villain.getDamage());
+        System.out.printf("*************************************************\n");
         // TO-DO implement getHP()
         //System.out.println("%s has %d hp left.", villain.getName(), villian.getHP());
         System.out.println("Do you want to:");
@@ -53,18 +59,20 @@ public class Hero extends Character {
     }
 
     private void usePotion(Character other) {
-        System.out.println("  What potion do you want to use:");
-        System.out.println("    1. health");
-        System.out.println("    2. poison");
-        System.out.println("    3. strength");
+        System.out.println("What potion do you want to use:");
+        System.out.println("  1. health");
+        System.out.println("  2. poison");
+        System.out.println("  3. strength");
         System.out.print("Enter your choice: ");
         System.out.flush();
         int choice = in.nextInt();
+        System.out.println();
         if(choice == 1) {
             // health potion
             HealthPotion p = new HealthPotion(15);
             p.takePotion(this);
         } else if (choice == 2){
+            System.out.printf("You have poisoned %s!\n", other.getName());
             Potion p = new PoisonPotion(5);
             p.takePotion(other);
         } else if (choice == 3){

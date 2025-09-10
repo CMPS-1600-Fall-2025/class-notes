@@ -29,7 +29,7 @@ abstract public class Character {
         if(this.hp < 0) {
             this.hp = 0;
         }
-        System.out.printf("   %s has %d HP left\n\n", this.name, this.hp);
+        System.out.printf("   %s has %d HP left\n", this.name, this.hp);
     }
 
     public String getName(){
@@ -82,8 +82,9 @@ abstract public class Character {
     public void becomePoisoned(int damage) {
         this.poisonTurnCount += 3;
         this.poisonDamage += damage;
-        System.out.printf("%s is poisoned for the next %d turns!\n", this.getName(), this.getPoisonTurnCount());
-        System.out.printf("They will take %d damage each turn\n", this.getPoisonDamage());
-        System.out.flush();
+        System.out.printf("%s is poisoned for the next %d turns and will take %d damage each turn!\n", 
+                            this.getName(), 
+                            this.getPoisonTurnCount(), 
+                            this.getPoisonDamage());
     }
 }

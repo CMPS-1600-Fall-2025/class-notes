@@ -18,6 +18,8 @@ public class Villain extends Character{
     // version written in Character.
     @Override
     public void takeTurn(Character other) {
+        System.out.println();
+        System.out.printf("It is %s's turn!\n", this.getName());
         this.handleCharacterStates();
         // in case poison defeats them at top of their turn
         if(this.getHP() <= 0) {
