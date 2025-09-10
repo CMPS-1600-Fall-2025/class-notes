@@ -11,6 +11,11 @@ public class AdventureGame {
     }
 
     public static void enterCombatLoop(Character hero, Character villain) {
+        System.out.printf("You the great %s are in a fight with %s!\n", hero.getName(), villain.getName());
+        System.out.printf("Evil %s stole $500 from you! You are fuming because you can't afford a PS5 now!\n", villain.getName());
+        System.out.printf("  You have %d hp, and you deal %d attack damage\n", hero.getHP(), hero.getDamage());
+        System.out.printf("  %s has %d hp, and deals %d attack damage.\n", villain.getName(), villain.getHP(), villain.getDamage());
+
         while(true) {
             // hero attack the villian
             

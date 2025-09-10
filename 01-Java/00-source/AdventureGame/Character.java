@@ -44,6 +44,14 @@ abstract public class Character {
         return this.damage;
     }
 
+    public int getPoisonDamage() {
+        return this.poisonDamage;
+    }
+
+    public int getPoisonTurnCount() {
+        return this.poisonTurnCount;
+    }
+
     public Boolean isAlive() {
         if(this.hp > 0) {
             return true;
@@ -65,11 +73,17 @@ abstract public class Character {
         if(this.poisonTurnCount > 0) {
             this.poisonTurnCount--;
             this.modifyHealth(-poisonDamage);
+            System.out.printf("%s has suffered %d poison damage.\n", this.getName(), this.getPoisonDamage());
+            System.out.printf("  They have %d HP left.\n", this.getHP());
+            System.out.printf("  They are poisoned for %d more turns\n", this.getPoisonTurnCount());
         }
     }
 
     public void becomePoisoned(int damage) {
         this.poisonTurnCount += 3;
         this.poisonDamage += damage;
+        System.out.printf("%s is poisoned for the next %d turns!\n", this.getName(), this.getPoisonTurnCount());
+        System.out.printf("They will take %d damage each turn\n", this.getPoisonDamage());
+        System.out.flush();
     }
 }

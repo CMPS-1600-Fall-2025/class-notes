@@ -19,6 +19,10 @@ public class Villain extends Character{
     @Override
     public void takeTurn(Character other) {
         this.handleCharacterStates();
+        // in case poison defeats them at top of their turn
+        if(this.getHP() <= 0) {
+            return;
+        }
         // choice 1 = attack
         // choice 2 = defend
         int choice = AdventureGame.random.nextInt(2);

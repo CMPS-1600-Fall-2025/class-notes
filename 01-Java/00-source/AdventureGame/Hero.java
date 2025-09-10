@@ -22,6 +22,10 @@ public class Hero extends Character {
     @Override
     public void takeTurn(Character villain) {
         handleCharacterStates();
+        // in case poison defeats them at top of their turn
+        if(this.getHP() <= 0) {
+            return;
+        }
         // TO-DO implement getHP()
         //System.out.println("%s has %d hp left.", villain.getName(), villian.getHP());
         System.out.println("Do you want to:");
@@ -45,8 +49,6 @@ public class Hero extends Character {
         // read in user choice
         
         //in.next();
-        
-        System.out.printf("user choice: %d\n",choice);
         //in.close();
     }
 
