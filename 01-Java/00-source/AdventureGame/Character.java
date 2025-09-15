@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 abstract public class Character {
     private String name;
     private int hp;
@@ -5,6 +7,7 @@ abstract public class Character {
     // poison state variables
     private int poisonDamage;
     private int poisonTurnCount;
+    private ArrayList<Potion> inventory;
 
 
     public Character(String name, int hp, int damage) {
@@ -13,6 +16,7 @@ abstract public class Character {
         this.damage = damage;
         this.poisonDamage = 0;
         this.poisonTurnCount = 0;
+        this.inventory = new ArrayList<Potion>();
     }
 
     /**
