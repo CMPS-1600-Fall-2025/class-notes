@@ -97,4 +97,63 @@ We do not have to handle **unchecked** exceptions. These are things that are
 logically avoidable (like divide by zero), and we should logically avoid them.
 
 In the hierarchy, all subclasses `RuntimeException` are unchecked. Everything else
-is checked. 
+is checked.
+
+## Throwing exceptions
+
+If we are required (or want) to handle an exception, but it isn't appropriate
+to use a try-catch block in a particular method, we can **throw** the exception
+to the caller.
+
+This passes the buck up to whoever called this method.
+
+```java
+public static void main(String[] args) {
+    // get filename from user
+    fname = ...
+
+    readInFile(fname);
+}
+
+public static void readInFile(String fname) {
+    BufferedReader input = new BufferedReader(new File(fname));
+    // read in all lines
+    // ...
+    input.close();
+}
+```
+
+In this example, the appropriate place to do the exception handling is in
+the main method which asks the user for the file to open. That's where
+we have the context to make the appropriate decisions if this fails.
+
+To do so:
+
+```java
+public static void main(String[] args) {
+    // get filename from user
+    fname = ...
+
+    try {
+        readInFile(fname);
+    } catch (IOException e) {
+        //...
+    }
+    
+}
+
+public static void readInFile(String fname) throws IOException{
+    BufferedReader input = new BufferedReader(new File(fname));
+    // read in all lines
+    // ...
+    input.close();
+}
+```
+
+### How to decide where to put the try-catch block
+
+We put our try-catch block at the level in the chain of function calls where
+we have enough context to appropriately handle the exception.
+
+Low level methods may not have enough context. Higher level ones can make more
+informed decisions.
