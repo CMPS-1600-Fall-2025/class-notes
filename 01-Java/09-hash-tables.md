@@ -76,3 +76,50 @@ Avoiding all collisions is impossible. Why, we don't have inifinite space.
 
 What are our strategies for minimizing and for handling collisions when they
 exist?
+
+## Minimizing Collisions
+
+We minimize collisions by 
+
+- using a good hash function
+- choosing a good size for our hash table
+    - should be prime
+
+### Process for storing values:
+
+```java
+int capacity = 100
+ArrayList l = new ArrayList(capacity);
+int hash = obj.hashCode();
+
+int index = hash % capacity;
+```
+
+To minimize collisions arising from using modulus, we choose our HashMap
+capacities to be prime numbers.
+
+## Dealing with collision
+
+Collision are inevitable. How do we deal with them:
+
+- Linear Probing
+    - If an element already exists at some index, insert into the next index.
+- Quadratic probing
+- double hashing
+- Separate Chaining
+    - Every index maps to a list. We insert into that list.
+
+## Efficiency of Separate Chaining
+
+In the worst possible case, everything has mapped to the same hash value and
+all elements are in a single linked list. Lookups would thus be O(n).
+
+In practice, elements tend to end up distributed, especially if we do three
+things:
+
+- pick prime table size
+- write a good hash function
+- grow the table so that it always has plenty of free space
+
+Doing these three things, the linked lists tend to only have a handful of
+elements so the efficiency isn't really an issue.
