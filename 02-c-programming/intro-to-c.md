@@ -71,3 +71,36 @@ all variables were 36 bit words.
 code.
 
 To address these issues, Dennis Ritchie wrote the C Programming language.
+
+# So what is C?
+
+C is a system's language, designed with OS development in mind.
+
+## Familar Features
+
+- variables and variable types
+- arrays
+- control structures
+    - if-else
+    - switch statements
+    - while, do-while, for loops
+    - break, continue
+- functions
+    - recursive functions
+
+## Unfamiliar Features
+- pointers
+- structs and unions
+
+## Not in C
+
+- No objects or classes
+- No access modifiers
+- boolean
+- string
+- print statement
+
+The actual core of C was intentionally kept very small.
+
+Functionality like booleans and strings must be imported.
+
