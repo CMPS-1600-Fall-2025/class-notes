@@ -9,6 +9,8 @@ int main(int argc, char** argv) {
     nums[1] = 3;
     nums[2] = 5;
 
+    // C does not initialize variables or arrays
+    // C allows us to iterate past the end of an array!
     for(int i = 0; i < 11; i++) {
         printf("nums[%d]: %d\n", i, nums[i]);
     }
