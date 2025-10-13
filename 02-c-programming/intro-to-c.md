@@ -104,3 +104,31 @@ The actual core of C was intentionally kept very small.
 
 Functionality like booleans and strings must be imported.
 
+# C Programming
+
+## Arrays
+
+An array is a fixed chunk of consecutive memory we can store
+data.
+
+Each array is set in size. That is, it can not be expanded.
+
+If we want it to grow, we have to create a larger copy.
+
+The c compiler does not protext us from accessing outside
+the bounds of an array. It is our job to safely use arrays.
+
+``` c
+int nums[10];
+```
+
+`nums` is a "pointer" that points to the beginning of the array. The
+`nums` variable actually stores the memory address of the beginning of
+the array.
+
+Using index notation, we can access the values actually stored at
+those locations.
+
+## Pointers
+
+We can request the memory address of a variable using the `&` operator.
