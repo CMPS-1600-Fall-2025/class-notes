@@ -132,3 +132,14 @@ those locations.
 ## Pointers
 
 We can request the memory address of a variable using the `&` operator.
+
+If we have memory address and want to retrieve the thing stored there,
+we use the `*` operator, aka the "dereference" operator.
+
+We also use the `*` to declare a pointer.
+
+```c
+int *ptr; // this is a variable that points to an int in memory
+```
+
+`ptr` itself stores a memory address.
