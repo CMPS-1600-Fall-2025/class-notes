@@ -143,3 +143,98 @@ int *ptr; // this is a variable that points to an int in memory
 ```
 
 `ptr` itself stores a memory address.
+
+## Multidimensional Arrays
+
+In C, we can create multidimensional arrays.
+
+If we think about an array as a consecutive set of values,
+a 2d array is like a table of values.
+
+``` c
+int arr[10]; // 10 values in memory
+int arr2[4][5]; // a table with 4 rows and 5 columns
+arr2[2][3] = 31; 
+```
+
+Another way of thinking about it is that a 2D array is an
+array of arrays. Every row is an array with 5 elements.
+
+Every row in our example above has the same number of columns.
+
+Also, since the total size is known, memory for the entire array
+is allocated whenever it is declared (more accurately, at compile time).
+
+A very common use of 2D arrays is to store an array of strings.
+
+Since a string is an array of characters, an array of strings is
+an array of character arrays.
+
+```c
+char arr1[10][20]; // 10 strings of 20 characters.
+```
+
+To accommodate different length strings, we use pointers.
+
+```c
+char* arr2[10]; // an array of 10 strings.
+```
+
+To accommodate a list of strings where we don't know how many
+there are (or how large they are) at compile time, we use
+`char**`.
+
+```c
+char** argv; // an array of strings
+```
+
+`argv` points to the beginning of an array of strings. During
+runtime, we can allocate enough pointers for the amount of strings
+we'll have an enough memory for each string.
+
+This could be useful for reading in a file of unknown length.
+
+It is also used for reading in command line arguments for a program.
+
+# Memory Allocation
+
+At compile time, we don't always know how memory we will need.
+
+It we need to create arrays or other structures in c and we don't
+know how much memory will be needed, we can dynamically allocate that
+memory. This is just requesting from the OS as much memory as we need.
+
+We dynamically allocate memory using ther `malloc` function.
+
+`malloc` takes in the number of bytes to allocate and it returns a
+pointer to the beginning of the allocated memory, specifically a
+void pointer: `void *`.
+
+```c
+int size = 15;
+int* arr = malloc(size * sizeof(int));
+```
+
+Other than dynamically allocating memory, a second benefit is that 
+the memory allocated by malloc will continue to exist even after
+the function in which it was allocated returns.
+
+We are responsible to releasing it when we are done with it. If we don't,
+we'll have a **memory leak**.
+
+To release memory allocated by `malloc`, we use `free()`;
+
+After calling `free`, best practice is to set the pointer to `NULL` to
+avoid a *dangling pointer*, a pointer into memory that we not longer own.
+
+# Structs
+
+A struct is a collection of related variables.
+
+```c
+typedef struct point3D {
+    int x;
+    int y;
+    int z;
+} point3d;
+```
