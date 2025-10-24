@@ -238,3 +238,38 @@ typedef struct point3D {
     int z;
 } point3d;
 ```
+
+We can nest structs
+
+```c
+typedef struct atom {
+    char symbol[3];
+    int number;
+    point3D coords;
+} atom;
+```
+
+To instantiate an atom:
+
+```c
+atom he = {"he", 2, {0,0,0}};
+```
+
+When we instantiate a struct this way, it is placed on the stack.
+
+If we want to allocate it on the heap, we can use malloc:
+
+```c
+atom* c = malloc(sizeof(atom));
+strcpy(c->symbol, "c"); // necessary to copy the literate string "c" into the heap
+c->number = 6;
+c->coords.x = 1;
+c->coords.y = 1;
+c->coords.z = 1;
+```
+
+Don't forget to free the memory when done!
+
+```c
+free(c);
+```
