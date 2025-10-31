@@ -109,3 +109,142 @@ int main() {
     atom o = {"o", 8, {20,20,20}};
 }
 ```
+
+## Object-Oriented Programming in C++
+
+Syntax for writing a class in C++
+
+```C++
+#include <iostream>
+using namespace std;
+
+namespace universe {
+    typedef struct point3D {
+        int x;
+        int y;
+        int z;
+    } point3D;
+
+    class Atom {
+        string symbol;
+        int number;
+        point3D coords;
+
+        public:
+        Atom(string symbol, int number, point3D coords) {
+            this->symbol = symbol;
+            this->number = number;
+            this->coords = coords;
+        }
+
+        void print() {
+            cout << "Name: " << this->symbol << endl;
+            cout << "Number: " << this->number << endl;
+            cout << "Coords: (" << this->coords.x << ", " << this->coords.y << ", " << this->coords.z << ")" << endl; 
+        }
+    };
+}
+```
+
+We can write classes all in a single file, but typically in C++,
+we split classes into two files, the header and the source.
+
+In the header goes the class definition (including all attributes
+and methods) and in source go all method implementations.
+
+**Atom Header:**
+```C++
+#include <iostream>
+using namespace std;
+
+namespace universe {
+    typedef struct point3D {
+        int x;
+        int y;
+        int z;
+    } point3D;
+
+    class Atom {
+        string symbol;
+        int number;
+        point3D coords;
+
+        public:
+        Atom(string symbol, int number, point3D coords);
+        void print();
+    };
+}
+```
+
+**Atom Source File:**
+```C++
+#include <iostream>
+#include "atom.hpp"
+
+using namespace std;
+using namespace universe;
+
+Atom::Atom(string symbol, int number, point3D coords) {
+    this->symbol = symbol;
+    this->number = number;
+    this->coords = coords;
+}
+
+void Atom::print() {
+    cout << "Name: " << this->symbol << endl;
+    cout << "Number: " << this->number << endl;
+    cout << "Coords: (" << this->coords.x << ", " << this->coords.y << ", " << this->coords.z << ")" << endl; 
+}
+```
+
+In the source file we provide the definitions for the functions declared
+in the header.
+
+The syntax `Atom::printAtom` means the `printAtom()` function belonging to the
+`Atom` class.
+
+### Object Construction and Destruction
+
+In C++, we can write :
+- Constructors
+- Copy Constructors
+- Destructors
+
+All three have default versions which are automatically provided if we don't
+implement our own.
+
+#### Constructors and Object Instantiation
+
+When constructing objects, we can choose whether to build them on the **heap**
+or the **stack**.
+
+```C++
+Atom *c = new Atom("c", 6, {0,0,0}); // created on the heap
+Atom o("o", 8, {10, 10, 10}); // created on the stack
+```
+
+Pointer vs dot notation
+
+```C++
+c->print(); // user pointer notation since c is a pointer
+o.print(); // user dot notation since o is NOT a pointer
+```
+
+When done with c, we must free it:
+```C++
+delete c;
+```
+
+#### Destructors
+
+When we `delete` some object, its **destructor** is called and its memory
+is released.
+
+The purpose of a destructor is to release all dynamicaly allocated memory
+that our object allocated for itself.
+
+```C++
+~Atom() {
+    // deallocate all memory allocated by this object
+}
+```

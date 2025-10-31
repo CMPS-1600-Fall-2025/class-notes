@@ -1,23 +1,17 @@
 #include <iostream>
-namespace universe {
-    typedef struct point3D {
-        int x;
-        int y;
-        int z;
-    } point3D;
+#include "atom.hpp"
 
-    typedef struct atom {
-        char symbol[3];
-        int number;
-        point3D coords;
-    } atom;
+using namespace std;
+using namespace universe;
 
-    void printAtom(atom* a) {
-        std::printf("Name: %s\nNumber: %d\nCoords: (%d, %d, %d)\n", 
-            a->symbol, 
-            a->number,
-            a->coords.x,
-            a->coords.y,
-            a->coords.z);
-    }
+Atom::Atom(string symbol, int number, point3D coords) {
+    this->symbol = symbol;
+    this->number = number;
+    this->coords = coords;
+}
+
+void Atom::print() {
+    cout << "Name: " << this->symbol << endl;
+    cout << "Number: " << this->number << endl;
+    cout << "Coords: (" << this->coords.x << ", " << this->coords.y << ", " << this->coords.z << ")" << endl; 
 }
