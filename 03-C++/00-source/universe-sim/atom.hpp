@@ -3,19 +3,23 @@
 using namespace std;
 
 namespace universe {
-    typedef struct point3D {
+    class Point3D {
+        public:
         int x;
         int y;
         int z;
-    } point3D;
+
+        Point3D(int x, int y, int z);
+    };
 
     class Atom {
         string symbol;
         int number;
-        point3D coords;
+        Point3D *coords;
 
         public:
-        Atom(string symbol, int number, point3D coords);
+        Atom(string symbol, int number, int x, int y, int z);
+        ~Atom();
         void print();
     };
 }

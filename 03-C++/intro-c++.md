@@ -246,5 +246,19 @@ that our object allocated for itself.
 ```C++
 ~Atom() {
     // deallocate all memory allocated by this object
+    delete this->coords;
 }
 ```
+
+We only need to implement a destructor if our object allocates memory for
+itself through the `new` keyword for creating objects or by using `malloc`.
+
+#### Copy Constructors
+
+The job of a copy constructor is to create a copy of some object.
+
+In C++, we can pass objects to functions in one of two ways:
+
+1. By reference - passing a pointer to the object
+2. Directly - passes a copy of the object to the function
+
