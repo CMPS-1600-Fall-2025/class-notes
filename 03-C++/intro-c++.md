@@ -262,3 +262,66 @@ In C++, we can pass objects to functions in one of two ways:
 1. By reference - passing a pointer to the object
 2. Directly - passes a copy of the object to the function
 
+When we implement a copy constructor we can create a **deep** or **shallow**
+copy.
+
+By default, if we don't implement our own copy constructor, a default one
+is provided which creates a **shallow** copy.
+
+```C++
+class Atom {
+    public:
+    string symbol;
+    int number;
+    Point3D *coords;
+    ...
+};
+```
+
+In Atom, we have `coords` is a pointer. A **deep** copy will copy
+the original coords into a new `Point3D` and have `this->coords` 
+point to that new copy.
+
+A **shallow** copy just points `this->coords` to the original Point3D.
+
+Example:
+
+Suppose our Atom copy constructor looked like
+```C++
+Atom::Atom(const Atom& other) {
+    this->symbol = other.symbol;
+    this->number = other.number;
+    this->coords = other.coords; // creates a shallow copy
+    // this->coords and other.coords both point to the same set of
+    // coordinates in memory.
+}
+```
+
+And we had the following `main` method
+
+```C++
+int main() {
+    Atom *n1 = new Atom("n", 7, 10, 10, 10);
+    Atom *n2 = new Atom(*n1); // creates a shallow copy
+    // Both n1 and n2 coords point to the same point3D in memory 
+    printAtom(n2);
+    moveAtom(n1, 1, 1, 1);
+    printAtom(n2); // n2 will have been moved!
+}
+```
+
+If we create an atom `n1` and a shallow copy `n2`and then
+move `n1`, `n2` will also be moved because they both point
+to the same `Point3D`. Instead we should have created a deep copy
+so that they each have their own set of separate coordinates.
+
+Here is how we can create a deep copy:
+
+```C++
+Atom::Atom(const Atom& other) {
+    this->symbol = other.symbol;
+    this->number = other.number;
+    // create a deep copy of coords by creating a new Point3D
+    this->coords = new Point3D(other.coords->x, other.coords->y, other.coords->z);
+}
+```
