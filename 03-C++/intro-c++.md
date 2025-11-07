@@ -325,3 +325,29 @@ Atom::Atom(const Atom& other) {
     this->coords = new Point3D(other.coords->x, other.coords->y, other.coords->z);
 }
 ```
+
+## Inheritance
+
+C++ has inheritance, superclasses, function overriding, and polymorphism.
+
+There are some differences between the two.
+
+In C++:
+- A class can directly inherit from multiple classes.
+    - Introduces the "diamond problem"
+- Functions are NOT by default overridable. We must specify if we want a function
+to be overridden.
+
+### The Diamond Problem
+
+```
+        [Class Animal]
+        /            \
+    [Fish]         [Mammal]
+         \         /
+           [Whale]
+```
+
+If we abstract method reproduce in `Animal` with `Fish` and `Mammal` overriding
+it respecively to give birth by eggs or live birth, it is ambiguous which
+version `Whale` should use. This is the **diamond problem**. 
