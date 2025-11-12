@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Animal.hpp"
 
 class Mammal: public Animal {
